@@ -7,3 +7,4 @@ Sejuani é outro . . .
 .
 .
 Noix
+Anyway: Este pequeno pedaço de programa será utilizado para tentar resolver problemas Sat em JS
