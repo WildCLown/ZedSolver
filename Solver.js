@@ -92,32 +92,32 @@ function readVariables(clauses, text){
   }
   let auxiliar = arrayVariables.length
   for (let u = 0; u < auxiliar; u++) {
-    arrayVariables[u] = 0
+    arrayVariables[u] = false
   }
 
   return arrayVariables
 }
 function checkProblemSpecification(text, clauses, variables){
   for (let i = 0; i < text.length; i++) {
-      let a = text[i].toString();
-      if(a.charAt(0) == "c" ){
-        /* apenas para pular a leitura do comentário citado*/
-      }else if(a.charAt(0) == "p"){
-        let aux = a.split(' ')
-        for (let j = 0, x = 0; j < aux.length; j++) {
-          if(aux[j] != ''){
-            aux[x] = aux[j]
-            x++
-          }
+    let a = text[i].toString();
+    if(a.charAt(0) == "c" ){
+      /* apenas para pular a leitura do comentário citado*/
+    }else if(a.charAt(0) == "p"){
+      let aux = a.split(' ')
+      for (let j = 0, x = 0; j < aux.length; j++) {
+        if(aux[j] != ''){
+          aux[x] = aux[j]
+          x++
         }
-        /* p cnf #vars #clauses */
-        var clausesNumber = aux[3]
-        var clausesLenght = aux[2]
-        let found = false;
-        let x = 0 /* contadores */
-        let y = 0
       }
+      /* p cnf #vars #clauses */
+      var clausesNumber = aux[3]
+      var clausesLenght = aux[2]
+      let found = false;
+      let x = 0 /* contadores */
+      let y = 0
     }
+  }
   if(variables.length != clausesLenght){
     return false
   }else if(clauses.length != clausesNumber){
@@ -127,5 +127,29 @@ function checkProblemSpecification(text, clauses, variables){
     return true
   }
 }
-a = readFormula()
-console.log(a)
+function nextAssignment(variables){
+  let i = variables.length
+  let achou = false
+  while (!achou){
+    if(variables[i-1] == false){
+      variables[i-1] = true
+      achou = true
+      if(i != variables.length){
+        i++
+      while(i <= variables.length){
+        variables[i-1] = false
+        i++
+      }
+      return variables
+    }else{
+      return variables
+    }
+    }
+    else if(i==0){
+      return variables
+    }
+    else{
+      i--
+    }
+  }
+}
