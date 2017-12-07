@@ -82,10 +82,6 @@ function readVariables(clauses, text){
       }
     }
   }
-  let auxiliar = arrayVariables.length
-  for (let u = 0; u < auxiliar; u++) {
-    arrayVariables[u] = false
-  }
 
   return arrayVariables
 }
@@ -122,26 +118,35 @@ function checkProblemSpecification(text, clauses, variables){
 function nextAssignment(variables){
   let i = variables.length
   let achou = false
-  while (!achou){
-    if(variables[i-1] == false){
-      variables[i-1] = true
-      achou = true
-      if(i != variables.length){
-        i++
-        while(i <= variables.length){
-          variables[i-1] = false
+  if(variables[0] != false  && variables[0] != true){
+    for (var i = variables.length - 1; i >= 0; i--) {
+      variables[i] = false
+    }
+    return variables
+    
+  }else{
+
+    while (!achou){
+      if(variables[i-1] == false){
+        variables[i-1] = true
+        achou = true
+        if(i != variables.length){
           i++
+          while(i <= variables.length){
+            variables[i-1] = false
+            i++
+          }
+          return variables
+        }else{
+          return variables
         }
-        return variables
-      }else{
+      }
+      else if(i==0){
         return variables
       }
-    }
-    else if(i==0){
-      return variables
-    }
-    else{
-      i--
+      else{
+        i--
+      }
     }
   }
 }
