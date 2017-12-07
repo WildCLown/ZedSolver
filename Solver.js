@@ -18,8 +18,11 @@ function readClauses(text){
     let a = text[i]
     if(a.charAt(0) == "c" ){
     }else if(a.charAt(0) == "p"){
+      /* tenho ciencia que pode nao comecar com p, e mesmo assi, ter que rodar o sat, mas nao consegui voltar a este ponto, pois estava a tentar organizar as outras funcoes*/
+      /* bem intuitivo, acredito eu, explicarei se pedir*/
       let aux = a.split(' ')
       for (let i = 0, x = 0; i < aux.length; i++) {
+        /* ira passar todas as strings, menos as vazias ('') para frente, logo, a posiçao do array em 2 e 3 serao numeros, caso nao queira trollar*/
         if(aux[i] != ''){
           aux[x] = aux[i]
           x++
@@ -36,6 +39,7 @@ function readClauses(text){
         i++
         let a = text[i]
         if(a.charAt(0) == "c" ){
+          /* como disse antes, o medo de possuir um comentario dentre as clausulas fora grande, logo, implementei dessa forma*/
           /* apenas para pular este text[i]*/
         }else{
           arrayClauses[y] = []
@@ -49,6 +53,7 @@ function readClauses(text){
             let a = text[i]
             let aux = a.split(' ')
           }else{
+            /* para facilitar na hora de substituir valores, pois caso false, !false = true*/
             arrayClauses[y][x] =  number.replace('-','!')
           }
           x++
@@ -82,7 +87,7 @@ function readVariables(clauses, text){
       }
     }
   }
-
+  /* inicialmente devolverá todos os numeros que há dentro das clausulas, ignorando ser negativo */
   return arrayVariables
 }
 function checkProblemSpecification(text, clauses, variables){
@@ -106,8 +111,11 @@ function checkProblemSpecification(text, clauses, variables){
       let y = 0
     }
   }
+  /* checa se o tamanho do array de variaveis possui o mesmo tamanho do numero de variaveis fornecido no cnf*/
   if(variables.length != clausesLenght){
     return false
+      /* checa se o tamanho do array de clausulas possui o mesmo tamanho de numero de clausulas forneido no cnf */
+
   }else if(clauses.length != clausesNumber){
     return false
   }
@@ -116,6 +124,7 @@ function checkProblemSpecification(text, clauses, variables){
   }
 }
 function nextAssignment(variables){
+  /* Apresentação com o criador necessária . . . N sei explicar em 1 linha */
   let i = variables.length
   let achou = false
   if(variables[0] != false  && variables[0] != true){
@@ -141,7 +150,7 @@ function nextAssignment(variables){
           return variables
         }
       }
-      else if(i==0){
+      else if(i==0){ /* não testei, mas acredito que poderia comparar i==1*/
         return variables
       }
       else{
