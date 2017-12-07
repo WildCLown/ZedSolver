@@ -3,7 +3,7 @@ function readFormula(fileName) {
   let text = fs.readFileSync('C:\Users\gtsa\Desktop\sat-master\simple0.cnf').toString();
   text = text.split('\n');
   var clauses = readClauses(text)
-  var variables = readVariables(clauses)
+  var variables = readVariables(clauses, text)
   let specOk = checkProblemSpecification(text, clauses, variables)
   let result = { 'clauses': [], 'variables': [] }
   if (specOk) {
