@@ -81,8 +81,6 @@ function readVariables(clauses, text){
           achou = true
         }else if(arrayVariables[k] == null){
           arrayVariables[k] = varAux
-        }else {
-          /* apenas para pular este [k]*/
         }
       }
     }
